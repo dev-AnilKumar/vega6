@@ -57,7 +57,6 @@ const Dashboard = () => {
     };
 
     const handleCreate = () => {
-        setSelectedBlog(null);
         setCreateEditModal(true);
     }
 

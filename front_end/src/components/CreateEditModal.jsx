@@ -2,11 +2,22 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 
 const BlogFormModal = ({ isOpen, onClose, initialData, onSuccess }) => {
+    console.log(initialData)
     const [formData, setFormData] = useState({
         title: initialData?.title || '',
         description: initialData?.description || '',
         blogImage: null
     });
+
+    useEffect(() => {
+        if (initialData) {
+            setFormData({
+                title: initialData?.title || '',
+                description: initialData?.description || '',
+                blogImage: null
+            });
+        }
+    }, [initialData]);
 
     const [errors, setErrors] = useState({ title: '', description: '', blogImage: '' });
 
@@ -30,7 +41,7 @@ const BlogFormModal = ({ isOpen, onClose, initialData, onSuccess }) => {
             formErrors.description = "Description is required";
         }
 
-        if (!formData.image && !initialData?.imageUrl) {
+        if (!formData.image && !initialData?.blogImage) {
             formErrors.blogImage = "image is required";
         }
 
